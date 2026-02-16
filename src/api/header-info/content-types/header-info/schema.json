@@ -1,0 +1,33 @@
+{
+  "kind": "singleType",
+  "collectionName": "header_infos",
+  "info": {
+    "singularName": "header-info",
+    "pluralName": "header-infos",
+    "displayName": "HeaderInfo"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "logo": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "phoneNumber": {
+      "type": "string",
+      "required": true
+    },
+    "searchPlaceholder": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

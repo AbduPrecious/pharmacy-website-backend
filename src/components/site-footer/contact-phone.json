@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_site_footer_contact_phones",
+  "info": {
+    "displayName": "ContactPhone",
+    "icon": "phone"
+  },
+  "options": {},
+  "attributes": {
+    "number": {
+      "type": "string",
+      "required": true
+    },
+    "location": {
+      "type": "string"
+    }
+  }
+}

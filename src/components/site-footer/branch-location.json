@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_site_footer_branch_locations",
+  "info": {
+    "displayName": "BranchLocation",
+    "icon": "archive"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "address": {
+      "type": "text"
+    },
+    "phones": {
+      "type": "component",
+      "repeatable": true,
+      "component": "site-footer.contact-phone"
+    },
+    "emails": {
+      "type": "component",
+      "repeatable": true,
+      "component": "site-footer.contact-email"
+    }
+  }
+}

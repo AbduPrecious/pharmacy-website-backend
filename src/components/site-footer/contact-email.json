@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_site_footer_contact_emails",
+  "info": {
+    "displayName": "ContactEmail",
+    "icon": "envelop"
+  },
+  "options": {},
+  "attributes": {
+    "address": {
+      "type": "email",
+      "required": true
+    },
+    "department": {
+      "type": "string"
+    }
+  }
+}

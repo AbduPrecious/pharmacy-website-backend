@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_site_footer_social_platforms",
+  "info": {
+    "displayName": "SocialPlatform",
+    "icon": "thumbUp"
+  },
+  "options": {},
+  "attributes": {
+    "platform": {
+      "type": "enumeration",
+      "enum": [
+        "Facebook",
+        "X",
+        "LinkedIn",
+        "Instagram",
+        "YouTube"
+      ],
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
