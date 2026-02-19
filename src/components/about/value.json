@@ -1,15 +1,10 @@
 {
-  "kind": "collectionType",
-  "collectionName": "slides",
+  "collectionName": "components_about_values",
   "info": {
-    "singularName": "slide",
-    "pluralName": "slides",
-    "displayName": "Slide"
+    "displayName": "Value",
+    "icon": "heart"
   },
-  "options": {
-    "draftAndPublish": true
-  },
-  "pluginOptions": {},
+  "options": {},
   "attributes": {
     "title": {
       "type": "string",
@@ -19,7 +14,7 @@
       "type": "blocks",
       "required": true
     },
-    "image": {
+    "icon": {
       "allowedTypes": [
         "images",
         "files",
@@ -28,13 +23,6 @@
       ],
       "type": "media",
       "multiple": false,
-      "required": true
-    },
-    "buttonText": {
-      "type": "string"
-    },
-    "order": {
-      "type": "integer",
       "required": true
     }
   }

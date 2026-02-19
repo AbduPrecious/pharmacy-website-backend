@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "slideshows",
+  "info": {
+    "singularName": "slideshow",
+    "pluralName": "slideshows",
+    "displayName": "Slideshow"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slides": {
+      "type": "component",
+      "repeatable": true,
+      "component": "page-content.slide"
+    }
+  }
+}

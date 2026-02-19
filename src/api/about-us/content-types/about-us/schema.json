@@ -1,0 +1,133 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_uses",
+  "info": {
+    "singularName": "about-us",
+    "pluralName": "about-uses",
+    "displayName": "AboutUs"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "welcomeTitle": {
+      "type": "string",
+      "required": true
+    },
+    "welcomeDescription": {
+      "type": "blocks",
+      "required": true
+    },
+    "welcomeImage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "values": {
+      "type": "component",
+      "repeatable": true,
+      "component": "about.value"
+    },
+    "missionTitle": {
+      "type": "string",
+      "required": true
+    },
+    "missionDescription": {
+      "type": "blocks",
+      "required": true
+    },
+    "missionIcon": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "visionTitle": {
+      "type": "string",
+      "required": true
+    },
+    "visionDescription": {
+      "type": "blocks",
+      "required": true
+    },
+    "visionIcon": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "qualityImage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "leadersImage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "leaderFollowImage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "isoCertificates": {
+      "type": "component",
+      "repeatable": true,
+      "component": "about.iso-certificate"
+    },
+    "milestoneImage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "groupCompanies": {
+      "type": "component",
+      "repeatable": true,
+      "component": "about.group-company"
+    },
+    "partners": {
+      "type": "component",
+      "repeatable": true,
+      "component": "about.partner"
+    }
+  }
+}

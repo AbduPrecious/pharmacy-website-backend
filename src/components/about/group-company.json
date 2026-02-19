@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_about_group_companies",
+  "info": {
+    "displayName": "GroupCompany",
+    "icon": "grid"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "logo": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "website": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

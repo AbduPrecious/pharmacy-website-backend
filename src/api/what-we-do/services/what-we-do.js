@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * slide service
+ * what-we-do service
  */
 
 const { createCoreService } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService('api::slide.slide');
+module.exports = createCoreService('api::what-we-do.what-we-do');

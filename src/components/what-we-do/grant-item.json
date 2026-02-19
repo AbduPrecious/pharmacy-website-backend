@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_what_we_do_grant_items",
+  "info": {
+    "displayName": "GrantItem",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "hasImage": {
+      "type": "boolean",
+      "required": true
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "description": {
+      "type": "blocks",
+      "required": true
+    }
+  }
+}

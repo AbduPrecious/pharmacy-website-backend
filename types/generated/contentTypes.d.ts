@@ -573,6 +573,50 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
+export interface PluginI18NLocale extends Schema.CollectionType {
+  collectionName: 'i18n_locale';
+  info: {
+    singularName: 'locale';
+    pluralName: 'locales';
+    collectionName: 'locales';
+    displayName: 'Locale';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetMinMax<{
+        min: 1;
+        max: 50;
+      }>;
+    code: Attribute.String & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUsersPermissionsPermission
   extends Schema.CollectionType {
   collectionName: 'up_permissions';
@@ -724,43 +768,45 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface PluginI18NLocale extends Schema.CollectionType {
-  collectionName: 'i18n_locale';
+export interface ApiAboutUsAboutUs extends Schema.SingleType {
+  collectionName: 'about_uses';
   info: {
-    singularName: 'locale';
-    pluralName: 'locales';
-    collectionName: 'locales';
-    displayName: 'Locale';
-    description: '';
+    singularName: 'about-us';
+    pluralName: 'about-uses';
+    displayName: 'AboutUs';
   };
   options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
+    draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String &
-      Attribute.SetMinMax<{
-        min: 1;
-        max: 50;
-      }>;
-    code: Attribute.String & Attribute.Unique;
+    welcomeTitle: Attribute.String & Attribute.Required;
+    welcomeDescription: Attribute.Blocks & Attribute.Required;
+    welcomeImage: Attribute.Media;
+    values: Attribute.Component<'about.value', true>;
+    missionTitle: Attribute.String & Attribute.Required;
+    missionDescription: Attribute.Blocks & Attribute.Required;
+    missionIcon: Attribute.Media & Attribute.Required;
+    visionTitle: Attribute.String & Attribute.Required;
+    visionDescription: Attribute.Blocks & Attribute.Required;
+    visionIcon: Attribute.Media & Attribute.Required;
+    qualityImage: Attribute.Media;
+    leadersImage: Attribute.Media & Attribute.Required;
+    leaderFollowImage: Attribute.Media & Attribute.Required;
+    isoCertificates: Attribute.Component<'about.iso-certificate', true>;
+    milestoneImage: Attribute.Media;
+    groupCompanies: Attribute.Component<'about.group-company', true>;
+    partners: Attribute.Component<'about.partner', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'plugin::i18n.locale',
+      'api::about-us.about-us',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'plugin::i18n.locale',
+      'api::about-us.about-us',
       'oneToOne',
       'admin::user'
     > &
@@ -871,6 +917,7 @@ export interface ApiMenuMenu extends Schema.CollectionType {
     singularName: 'menu';
     pluralName: 'menus';
     displayName: 'Menu';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -880,7 +927,7 @@ export interface ApiMenuMenu extends Schema.CollectionType {
     url: Attribute.String & Attribute.Required;
     order: Attribute.Integer;
     hasDropdown: Attribute.Boolean & Attribute.Required;
-    parents: Attribute.Relation<'api::menu.menu', 'oneToMany', 'admin::user'>;
+    menus: Attribute.Relation<'api::menu.menu', 'oneToMany', 'api::menu.menu'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -952,33 +999,29 @@ export interface ApiSiteFooterSiteFooter extends Schema.SingleType {
   };
 }
 
-export interface ApiSlideSlide extends Schema.CollectionType {
-  collectionName: 'slides';
+export interface ApiSlideshowSlideshow extends Schema.SingleType {
+  collectionName: 'slideshows';
   info: {
-    singularName: 'slide';
-    pluralName: 'slides';
-    displayName: 'Slide';
+    singularName: 'slideshow';
+    pluralName: 'slideshows';
+    displayName: 'Slideshow';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String & Attribute.Required;
-    description: Attribute.Blocks & Attribute.Required;
-    image: Attribute.Media & Attribute.Required;
-    buttonText: Attribute.String;
-    order: Attribute.Integer & Attribute.Required;
+    slides: Attribute.Component<'page-content.slide', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::slide.slide',
+      'api::slideshow.slideshow',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::slide.slide',
+      'api::slideshow.slideshow',
       'oneToOne',
       'admin::user'
     > &
@@ -1020,6 +1063,41 @@ export interface ApiWelcomeWelcome extends Schema.SingleType {
   };
 }
 
+export interface ApiWhatWeDoWhatWeDo extends Schema.SingleType {
+  collectionName: 'what_we_dos';
+  info: {
+    singularName: 'what-we-do';
+    pluralName: 'what-we-dos';
+    displayName: 'WhatWeDo';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    pageTitle: Attribute.String & Attribute.Required;
+    rdTitle: Attribute.String & Attribute.Required;
+    rdDescription: Attribute.Blocks & Attribute.Required;
+    grantItems: Attribute.Component<'what-we-do.grant-item', true> &
+      Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::what-we-do.what-we-do',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::what-we-do.what-we-do',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1034,18 +1112,20 @@ declare module '@strapi/types' {
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
+      'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'plugin::i18n.locale': PluginI18NLocale;
+      'api::about-us.about-us': ApiAboutUsAboutUs;
       'api::category.category': ApiCategoryCategory;
       'api::client.client': ApiClientClient;
       'api::header-info.header-info': ApiHeaderInfoHeaderInfo;
       'api::menu.menu': ApiMenuMenu;
       'api::new.new': ApiNewNew;
       'api::site-footer.site-footer': ApiSiteFooterSiteFooter;
-      'api::slide.slide': ApiSlideSlide;
+      'api::slideshow.slideshow': ApiSlideshowSlideshow;
       'api::welcome.welcome': ApiWelcomeWelcome;
+      'api::what-we-do.what-we-do': ApiWhatWeDoWhatWeDo;
     }
   }
 }

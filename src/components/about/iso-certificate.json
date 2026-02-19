@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_about_iso_certificates",
+  "info": {
+    "displayName": "IsoCertificate",
+    "icon": "file"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

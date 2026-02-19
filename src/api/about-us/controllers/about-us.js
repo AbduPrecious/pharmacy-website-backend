@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * slide controller
+ * about-us controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::slide.slide');
+module.exports = createCoreController('api::about-us.about-us');

@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * slide router
+ * slideshow router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::slide.slide');
+module.exports = createCoreRouter('api::slideshow.slideshow');

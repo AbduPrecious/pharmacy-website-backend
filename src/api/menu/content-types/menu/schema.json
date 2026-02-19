@@ -4,7 +4,8 @@
   "info": {
     "singularName": "menu",
     "pluralName": "menus",
-    "displayName": "Menu"
+    "displayName": "Menu",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -26,10 +27,10 @@
       "type": "boolean",
       "required": true
     },
-    "parents": {
+    "menus": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "admin::user"
+      "target": "api::menu.menu"
     }
   }
 }
