@@ -1,0 +1,168 @@
+{
+  "kind": "collectionType",
+  "collectionName": "job_applications",
+  "info": {
+    "singularName": "job-application",
+    "pluralName": "job-applications",
+    "displayName": "JobApplication"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "fullName": {
+      "type": "string"
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "Male",
+        "Female",
+        "Other"
+      ],
+      "required": true
+    },
+    "dateOfBirth": {
+      "required": true,
+      "type": "date"
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "phoneNumber": {
+      "type": "string",
+      "required": true
+    },
+    "secondaryPhone": {
+      "type": "string",
+      "required": false
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "secondaryEmail": {
+      "type": "email"
+    },
+    "profession": {
+      "type": "string",
+      "required": true
+    },
+    "currentJobTitle": {
+      "type": "string",
+      "required": true
+    },
+    "yearsExperience": {
+      "type": "integer"
+    },
+    "industry": {
+      "type": "enumeration",
+      "enum": [
+        "Technology",
+        "Health care",
+        "Agriculture",
+        "Food Processing",
+        "Construction",
+        "Tourism",
+        "Resource and Energy",
+        " Bank and Insurance",
+        "Brewery",
+        "Human Resource",
+        "Other"
+      ]
+    },
+    "careerLevel": {
+      "type": "enumeration",
+      "enum": [
+        "Entry Level",
+        "Junior",
+        "Mid-Level",
+        "Senior",
+        "Manager",
+        "Director"
+      ]
+    },
+    "educationLevel": {
+      "type": "enumeration",
+      "enum": [
+        "High School",
+        "Diploma",
+        "Advanced Diploma",
+        "Bachelor's Degree",
+        "Master's",
+        "PhD"
+      ]
+    },
+    "fieldOfStudy": {
+      "type": "string",
+      "required": true
+    },
+    "salaryRange": {
+      "type": "enumeration",
+      "enum": [
+        "below",
+        "ETB 5,000 ",
+        "ETB 5,000-10,000 ",
+        "ETB 10,000-20,000 ",
+        "ETB 20,000 ",
+        "above"
+      ]
+    },
+    "otherLanguages": {
+      "type": "boolean",
+      "required": true
+    },
+    "languageExplanation": {
+      "type": "blocks"
+    },
+    "hasRelationship": {
+      "type": "boolean",
+      "required": true
+    },
+    "hasRelative": {
+      "type": "boolean",
+      "required": true
+    },
+    "cv": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "coverLetter": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "submittedAt": {
+      "type": "datetime",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "New",
+        "Reviewing",
+        "Interviewed",
+        "Rejected",
+        "Hired"
+      ]
+    }
+  }
+}

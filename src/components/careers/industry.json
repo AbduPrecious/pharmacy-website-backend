@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_careers_industries",
+  "info": {
+    "displayName": "Industry"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "enumeration",
+      "enum": [
+        "Healthcare",
+        "Pharmaceutical",
+        "Medical Devices",
+        "Hospital",
+        "Research",
+        "Education",
+        "Other"
+      ]
+    }
+  }
+}

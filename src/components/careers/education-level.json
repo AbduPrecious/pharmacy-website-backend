@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_careers_education_levels",
+  "info": {
+    "displayName": "EducationLevel"
+  },
+  "options": {},
+  "attributes": {
+    "level": {
+      "type": "enumeration",
+      "enum": [
+        "High School",
+        "Diploma",
+        "Advanced Diploma",
+        "Bachelor's Degree",
+        "Master's",
+        "PhD"
+      ]
+    }
+  }
+}

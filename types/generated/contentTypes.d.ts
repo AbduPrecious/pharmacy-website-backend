@@ -820,15 +820,17 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     singularName: 'category';
     pluralName: 'categories';
     displayName: 'Category';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     name: Attribute.String & Attribute.Required;
-    icon: Attribute.String & Attribute.Required;
+    icon: Attribute.String;
     description: Attribute.String;
-    order: Attribute.Integer & Attribute.Required;
+    order: Attribute.Integer;
+    slug: Attribute.UID;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -879,6 +881,49 @@ export interface ApiClientClient extends Schema.CollectionType {
   };
 }
 
+export interface ApiContactInfoContactInfo extends Schema.SingleType {
+  collectionName: 'contact_infos';
+  info: {
+    singularName: 'contact-info';
+    pluralName: 'contact-infos';
+    displayName: 'ContactInfo';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    pageTitle: Attribute.String & Attribute.Required;
+    card1Title: Attribute.String & Attribute.Required;
+    card1Icon: Attribute.String & Attribute.Required;
+    card1Details: Attribute.Blocks & Attribute.Required;
+    card2Title: Attribute.String & Attribute.Required;
+    card2Icon: Attribute.String & Attribute.Required;
+    card2Details: Attribute.Blocks & Attribute.Required;
+    card3Title: Attribute.String & Attribute.Required;
+    card3Icon: Attribute.String & Attribute.Required;
+    card3Details: Attribute.Blocks & Attribute.Required;
+    mapEmbedUrl: Attribute.Text & Attribute.Required;
+    faqItems: Attribute.Component<'contact.faq-item', true> &
+      Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::contact-info.contact-info',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::contact-info.contact-info',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiHeaderInfoHeaderInfo extends Schema.SingleType {
   collectionName: 'header_infos';
   info: {
@@ -904,6 +949,137 @@ export interface ApiHeaderInfoHeaderInfo extends Schema.SingleType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::header-info.header-info',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiJobJob extends Schema.CollectionType {
+  collectionName: 'jobs';
+  info: {
+    singularName: 'job';
+    pluralName: 'jobs';
+    displayName: 'Job Listing';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    department: Attribute.String & Attribute.Required;
+    location: Attribute.String & Attribute.Required;
+    type: Attribute.Enumeration<
+      ['Full-time', 'Part-time', 'Contract', 'Internship']
+    >;
+    experience: Attribute.String & Attribute.Required;
+    description: Attribute.Blocks;
+    requirements: Attribute.Blocks;
+    responsibilities: Attribute.Blocks;
+    salary: Attribute.String;
+    deadline: Attribute.Date;
+    isActive: Attribute.Boolean;
+    order: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::job.job', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::job.job', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiJobApplicationJobApplication extends Schema.CollectionType {
+  collectionName: 'job_applications';
+  info: {
+    singularName: 'job-application';
+    pluralName: 'job-applications';
+    displayName: 'JobApplication';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    fullName: Attribute.String;
+    gender: Attribute.Enumeration<['Male', 'Female', 'Other']> &
+      Attribute.Required;
+    dateOfBirth: Attribute.Date & Attribute.Required;
+    location: Attribute.String & Attribute.Required;
+    phoneNumber: Attribute.String & Attribute.Required;
+    secondaryPhone: Attribute.String;
+    email: Attribute.Email & Attribute.Required;
+    secondaryEmail: Attribute.Email;
+    profession: Attribute.String & Attribute.Required;
+    currentJobTitle: Attribute.String & Attribute.Required;
+    yearsExperience: Attribute.Integer;
+    industry: Attribute.Enumeration<
+      [
+        'Technology',
+        'Health care',
+        'Agriculture',
+        'Food Processing',
+        'Construction',
+        'Tourism',
+        'Resource and Energy',
+        ' Bank and Insurance',
+        'Brewery',
+        'Human Resource',
+        'Other'
+      ]
+    >;
+    careerLevel: Attribute.Enumeration<
+      ['Entry Level', 'Junior', 'Mid-Level', 'Senior', 'Manager', 'Director']
+    >;
+    educationLevel: Attribute.Enumeration<
+      [
+        'High School',
+        'Diploma',
+        'Advanced Diploma',
+        "Bachelor's Degree",
+        "Master's",
+        'PhD'
+      ]
+    >;
+    fieldOfStudy: Attribute.String & Attribute.Required;
+    salaryRange: Attribute.Enumeration<
+      [
+        'below',
+        'ETB 5,000 ',
+        'ETB 5,000-10,000 ',
+        'ETB 10,000-20,000 ',
+        'ETB 20,000 ',
+        'above'
+      ]
+    >;
+    otherLanguages: Attribute.Boolean & Attribute.Required;
+    languageExplanation: Attribute.Blocks;
+    hasRelationship: Attribute.Boolean & Attribute.Required;
+    hasRelative: Attribute.Boolean & Attribute.Required;
+    cv: Attribute.Media;
+    coverLetter: Attribute.Media;
+    users_permissions_user: Attribute.Relation<
+      'api::job-application.job-application',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    submittedAt: Attribute.DateTime & Attribute.Required;
+    status: Attribute.Enumeration<
+      ['New', 'Reviewing', 'Interviewed', 'Rejected', 'Hired']
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::job-application.job-application',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::job-application.job-application',
       'oneToOne',
       'admin::user'
     > &
@@ -961,6 +1137,47 @@ export interface ApiNewNew extends Schema.CollectionType {
     createdBy: Attribute.Relation<'api::new.new', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::new.new', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProductProduct extends Schema.CollectionType {
+  collectionName: 'products';
+  info: {
+    singularName: 'product';
+    pluralName: 'products';
+    displayName: 'Product';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    slug: Attribute.String & Attribute.Unique;
+    description: Attribute.Blocks;
+    image: Attribute.Media;
+    isFeatured: Attribute.Boolean;
+    order: Attribute.Integer;
+    category: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'api::category.category'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -1119,9 +1336,13 @@ declare module '@strapi/types' {
       'api::about-us.about-us': ApiAboutUsAboutUs;
       'api::category.category': ApiCategoryCategory;
       'api::client.client': ApiClientClient;
+      'api::contact-info.contact-info': ApiContactInfoContactInfo;
       'api::header-info.header-info': ApiHeaderInfoHeaderInfo;
+      'api::job.job': ApiJobJob;
+      'api::job-application.job-application': ApiJobApplicationJobApplication;
       'api::menu.menu': ApiMenuMenu;
       'api::new.new': ApiNewNew;
+      'api::product.product': ApiProductProduct;
       'api::site-footer.site-footer': ApiSiteFooterSiteFooter;
       'api::slideshow.slideshow': ApiSlideshowSlideshow;
       'api::welcome.welcome': ApiWelcomeWelcome;

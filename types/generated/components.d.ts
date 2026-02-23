@@ -48,6 +48,70 @@ export interface AboutValue extends Schema.Component {
   };
 }
 
+export interface CareersCareerLevel extends Schema.Component {
+  collectionName: 'components_careers_career_levels';
+  info: {
+    displayName: 'CareerLevel';
+  };
+  attributes: {
+    level: Attribute.Enumeration<
+      ['Entry Level', 'Junior', 'Mid-Level', 'Senior', 'Manager', 'Director']
+    >;
+  };
+}
+
+export interface CareersEducationLevel extends Schema.Component {
+  collectionName: 'components_careers_education_levels';
+  info: {
+    displayName: 'EducationLevel';
+  };
+  attributes: {
+    level: Attribute.Enumeration<
+      [
+        'High School',
+        'Diploma',
+        'Advanced Diploma',
+        "Bachelor's Degree",
+        "Master's",
+        'PhD'
+      ]
+    >;
+  };
+}
+
+export interface CareersIndustry extends Schema.Component {
+  collectionName: 'components_careers_industries';
+  info: {
+    displayName: 'Industry';
+  };
+  attributes: {
+    name: Attribute.Enumeration<
+      [
+        'Healthcare',
+        'Pharmaceutical',
+        'Medical Devices',
+        'Hospital',
+        'Research',
+        'Education',
+        'Other'
+      ]
+    >;
+  };
+}
+
+export interface ContactFaqItem extends Schema.Component {
+  collectionName: 'components_contact_faq_items';
+  info: {
+    displayName: 'FaqItem';
+    icon: 'question';
+    description: '';
+  };
+  attributes: {
+    question: Attribute.Text & Attribute.Required;
+    answer: Attribute.Blocks & Attribute.Required;
+  };
+}
+
 export interface PageContentSlide extends Schema.Component {
   collectionName: 'components_page_content_slides';
   info: {
@@ -148,6 +212,10 @@ declare module '@strapi/types' {
       'about.iso-certificate': AboutIsoCertificate;
       'about.partner': AboutPartner;
       'about.value': AboutValue;
+      'careers.career-level': CareersCareerLevel;
+      'careers.education-level': CareersEducationLevel;
+      'careers.industry': CareersIndustry;
+      'contact.faq-item': ContactFaqItem;
       'page-content.slide': PageContentSlide;
       'site-footer.branch-location': SiteFooterBranchLocation;
       'site-footer.contact-email': SiteFooterContactEmail;

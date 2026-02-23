@@ -1,0 +1,66 @@
+{
+  "kind": "singleType",
+  "collectionName": "contact_infos",
+  "info": {
+    "singularName": "contact-info",
+    "pluralName": "contact-infos",
+    "displayName": "ContactInfo",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "pageTitle": {
+      "type": "string",
+      "required": true
+    },
+    "card1Title": {
+      "type": "string",
+      "required": true
+    },
+    "card1Icon": {
+      "type": "string",
+      "required": true
+    },
+    "card1Details": {
+      "type": "blocks",
+      "required": true
+    },
+    "card2Title": {
+      "type": "string",
+      "required": true
+    },
+    "card2Icon": {
+      "type": "string",
+      "required": true
+    },
+    "card2Details": {
+      "type": "blocks",
+      "required": true
+    },
+    "card3Title": {
+      "type": "string",
+      "required": true
+    },
+    "card3Icon": {
+      "type": "string",
+      "required": true
+    },
+    "card3Details": {
+      "type": "blocks",
+      "required": true
+    },
+    "mapEmbedUrl": {
+      "type": "text",
+      "required": true
+    },
+    "faqItems": {
+      "type": "component",
+      "repeatable": true,
+      "component": "contact.faq-item",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_contact_faq_items",
+  "info": {
+    "displayName": "FaqItem",
+    "icon": "question",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "question": {
+      "type": "text",
+      "required": true
+    },
+    "answer": {
+      "type": "blocks",
+      "required": true
+    }
+  }
+}

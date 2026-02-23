@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_careers_career_levels",
+  "info": {
+    "displayName": "CareerLevel"
+  },
+  "options": {},
+  "attributes": {
+    "level": {
+      "type": "enumeration",
+      "enum": [
+        "Entry Level",
+        "Junior",
+        "Mid-Level",
+        "Senior",
+        "Manager",
+        "Director"
+      ]
+    }
+  }
+}
