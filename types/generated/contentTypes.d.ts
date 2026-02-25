@@ -961,7 +961,7 @@ export interface ApiJobJob extends Schema.CollectionType {
   info: {
     singularName: 'job';
     pluralName: 'jobs';
-    displayName: 'Job Listing';
+    displayName: 'Vacancy';
     description: '';
   };
   options: {
@@ -1120,6 +1120,7 @@ export interface ApiNewNew extends Schema.CollectionType {
     singularName: 'new';
     pluralName: 'news';
     displayName: 'News';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1131,6 +1132,12 @@ export interface ApiNewNew extends Schema.CollectionType {
     image: Attribute.Media & Attribute.Required;
     date: Attribute.DateTime & Attribute.Required;
     isFeatured: Attribute.Boolean;
+    related_articles_v2: Attribute.Relation<
+      'api::new.new',
+      'manyToMany',
+      'api::new.new'
+    >;
+    news: Attribute.Relation<'api::new.new', 'manyToMany', 'api::new.new'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1163,6 +1170,16 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'api::product.product',
       'oneToOne',
       'api::category.category'
+    >;
+    related_products: Attribute.Relation<
+      'api::product.product',
+      'manyToMany',
+      'api::product.product'
+    >;
+    products: Attribute.Relation<
+      'api::product.product',
+      'manyToMany',
+      'api::product.product'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
