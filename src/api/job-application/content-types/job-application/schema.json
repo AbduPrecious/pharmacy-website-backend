@@ -4,7 +4,8 @@
   "info": {
     "singularName": "job-application",
     "pluralName": "job-applications",
-    "displayName": "JobApplication"
+    "displayName": "JobApplication",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,7 +13,8 @@
   "pluginOptions": {},
   "attributes": {
     "fullName": {
-      "type": "string"
+      "type": "string",
+      "required": false
     },
     "gender": {
       "type": "enumeration",
@@ -20,58 +22,54 @@
         "Male",
         "Female",
         "Other"
-      ],
-      "required": true
+      ]
     },
     "dateOfBirth": {
-      "required": true,
-      "type": "date"
+      "type": "date",
+      "required": false
     },
     "location": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "phoneNumber": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "secondaryPhone": {
-      "type": "string",
-      "required": false
+      "type": "string"
     },
     "email": {
       "type": "email",
-      "required": true
+      "required": false
     },
     "secondaryEmail": {
       "type": "email"
     },
     "profession": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "currentJobTitle": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "yearsExperience": {
-      "type": "integer"
+      "type": "integer",
+      "required": false
     },
     "industry": {
       "type": "enumeration",
       "enum": [
-        "Technology",
-        "Health care",
-        "Agriculture",
-        "Food Processing",
-        "Construction",
-        "Tourism",
-        "Resource and Energy",
-        " Bank and Insurance",
-        "Brewery",
-        "Human Resource",
+        "Healthcare",
+        "Pharmaceutical",
+        "Medical Devices",
+        "Hospital",
+        "Research",
+        "Education",
         "Other"
-      ]
+      ],
+      "required": false
     },
     "careerLevel": {
       "type": "enumeration",
@@ -89,30 +87,32 @@
       "enum": [
         "High School",
         "Diploma",
-        "Advanced Diploma",
-        "Bachelor's Degree",
+        "Bachelor's",
         "Master's",
-        "PhD"
-      ]
+        "PhD",
+        "Other"
+      ],
+      "required": false
     },
     "fieldOfStudy": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "salaryRange": {
       "type": "enumeration",
       "enum": [
-        "below",
-        "ETB 5,000 ",
-        "ETB 5,000-10,000 ",
-        "ETB 10,000-20,000 ",
-        "ETB 20,000 ",
-        "above"
-      ]
+        "ETB 0-5000",
+        "ETB 5000-10000",
+        "ETB 10000-20000",
+        "ETB 20000-30000",
+        "ETB 30000-50000",
+        "ETB 50000+"
+      ],
+      "required": false
     },
     "otherLanguages": {
       "type": "boolean",
-      "required": true
+      "required": false
     },
     "languageExplanation": {
       "type": "blocks"
@@ -123,36 +123,35 @@
     },
     "hasRelative": {
       "type": "boolean",
-      "required": true
+      "required": false
     },
     "cv": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "coverLetter": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
-    "users_permissions_user": {
+    "vacancy": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
-    },
-    "submittedAt": {
-      "type": "datetime",
-      "required": true
+      "target": "api::job.job",
+      "inversedBy": "job_application"
     },
     "status": {
       "type": "enumeration",

@@ -881,6 +881,42 @@ export interface ApiClientClient extends Schema.CollectionType {
   };
 }
 
+export interface ApiContactContact extends Schema.CollectionType {
+  collectionName: 'contacts';
+  info: {
+    singularName: 'contact';
+    pluralName: 'contacts';
+    displayName: 'Contact';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    email: Attribute.Email & Attribute.Required;
+    phone: Attribute.String;
+    subject: Attribute.String & Attribute.Required;
+    status: Attribute.Enumeration<['New', 'Read', 'Replied']>;
+    message: Attribute.Text & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::contact.contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::contact.contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiContactInfoContactInfo extends Schema.SingleType {
   collectionName: 'contact_infos';
   info: {
@@ -982,6 +1018,11 @@ export interface ApiJobJob extends Schema.CollectionType {
     deadline: Attribute.Date;
     isActive: Attribute.Boolean;
     order: Attribute.Integer;
+    job_application: Attribute.Relation<
+      'api::job.job',
+      'oneToOne',
+      'api::job-application.job-application'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -998,35 +1039,31 @@ export interface ApiJobApplicationJobApplication extends Schema.CollectionType {
     singularName: 'job-application';
     pluralName: 'job-applications';
     displayName: 'JobApplication';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     fullName: Attribute.String;
-    gender: Attribute.Enumeration<['Male', 'Female', 'Other']> &
-      Attribute.Required;
-    dateOfBirth: Attribute.Date & Attribute.Required;
-    location: Attribute.String & Attribute.Required;
-    phoneNumber: Attribute.String & Attribute.Required;
+    gender: Attribute.Enumeration<['Male', 'Female', 'Other']>;
+    dateOfBirth: Attribute.Date;
+    location: Attribute.String;
+    phoneNumber: Attribute.String;
     secondaryPhone: Attribute.String;
-    email: Attribute.Email & Attribute.Required;
+    email: Attribute.Email;
     secondaryEmail: Attribute.Email;
-    profession: Attribute.String & Attribute.Required;
-    currentJobTitle: Attribute.String & Attribute.Required;
+    profession: Attribute.String;
+    currentJobTitle: Attribute.String;
     yearsExperience: Attribute.Integer;
     industry: Attribute.Enumeration<
       [
-        'Technology',
-        'Health care',
-        'Agriculture',
-        'Food Processing',
-        'Construction',
-        'Tourism',
-        'Resource and Energy',
-        ' Bank and Insurance',
-        'Brewery',
-        'Human Resource',
+        'Healthcare',
+        'Pharmaceutical',
+        'Medical Devices',
+        'Hospital',
+        'Research',
+        'Education',
         'Other'
       ]
     >;
@@ -1034,38 +1071,30 @@ export interface ApiJobApplicationJobApplication extends Schema.CollectionType {
       ['Entry Level', 'Junior', 'Mid-Level', 'Senior', 'Manager', 'Director']
     >;
     educationLevel: Attribute.Enumeration<
-      [
-        'High School',
-        'Diploma',
-        'Advanced Diploma',
-        "Bachelor's Degree",
-        "Master's",
-        'PhD'
-      ]
+      ['High School', 'Diploma', "Bachelor's", "Master's", 'PhD', 'Other']
     >;
-    fieldOfStudy: Attribute.String & Attribute.Required;
+    fieldOfStudy: Attribute.String;
     salaryRange: Attribute.Enumeration<
       [
-        'below',
-        'ETB 5,000 ',
-        'ETB 5,000-10,000 ',
-        'ETB 10,000-20,000 ',
-        'ETB 20,000 ',
-        'above'
+        'ETB 0-5000',
+        'ETB 5000-10000',
+        'ETB 10000-20000',
+        'ETB 20000-30000',
+        'ETB 30000-50000',
+        'ETB 50000+'
       ]
     >;
-    otherLanguages: Attribute.Boolean & Attribute.Required;
+    otherLanguages: Attribute.Boolean;
     languageExplanation: Attribute.Blocks;
     hasRelationship: Attribute.Boolean & Attribute.Required;
-    hasRelative: Attribute.Boolean & Attribute.Required;
+    hasRelative: Attribute.Boolean;
     cv: Attribute.Media;
     coverLetter: Attribute.Media;
-    users_permissions_user: Attribute.Relation<
+    vacancy: Attribute.Relation<
       'api::job-application.job-application',
       'oneToOne',
-      'plugin::users-permissions.user'
+      'api::job.job'
     >;
-    submittedAt: Attribute.DateTime & Attribute.Required;
     status: Attribute.Enumeration<
       ['New', 'Reviewing', 'Interviewed', 'Rejected', 'Hired']
     >;
@@ -1353,6 +1382,7 @@ declare module '@strapi/types' {
       'api::about-us.about-us': ApiAboutUsAboutUs;
       'api::category.category': ApiCategoryCategory;
       'api::client.client': ApiClientClient;
+      'api::contact.contact': ApiContactContact;
       'api::contact-info.contact-info': ApiContactInfoContactInfo;
       'api::header-info.header-info': ApiHeaderInfoHeaderInfo;
       'api::job.job': ApiJobJob;

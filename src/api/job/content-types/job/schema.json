@@ -57,6 +57,12 @@
     },
     "order": {
       "type": "integer"
+    },
+    "job_application": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::job-application.job-application",
+      "mappedBy": "vacancy"
     }
   }
 }
