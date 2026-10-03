@@ -57,6 +57,9 @@
       "relation": "manyToMany",
       "target": "api::product.product",
       "inversedBy": "related_products"
+    },
+    "price": {
+      "type": "decimal"
     }
   }
 }

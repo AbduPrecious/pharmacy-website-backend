@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_payment_order_items",
+  "info": {
+    "displayName": "Order Item",
+    "icon": "archive"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "quantity": {
+      "type": "integer"
+    },
+    "image": {
+      "type": "string"
+    }
+  }
+}

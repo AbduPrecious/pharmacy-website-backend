@@ -126,6 +126,20 @@ export interface PageContentSlide extends Schema.Component {
   };
 }
 
+export interface PaymentOrderItem extends Schema.Component {
+  collectionName: 'components_payment_order_items';
+  info: {
+    displayName: 'Order Item';
+    icon: 'archive';
+  };
+  attributes: {
+    name: Attribute.String;
+    price: Attribute.Decimal;
+    quantity: Attribute.Integer;
+    image: Attribute.String;
+  };
+}
+
 export interface SiteFooterBranchLocation extends Schema.Component {
   collectionName: 'components_site_footer_branch_locations';
   info: {
@@ -217,6 +231,7 @@ declare module '@strapi/types' {
       'careers.industry': CareersIndustry;
       'contact.faq-item': ContactFaqItem;
       'page-content.slide': PageContentSlide;
+      'payment.order-item': PaymentOrderItem;
       'site-footer.branch-location': SiteFooterBranchLocation;
       'site-footer.contact-email': SiteFooterContactEmail;
       'site-footer.contact-phone': SiteFooterContactPhone;

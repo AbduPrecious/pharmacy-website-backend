@@ -751,6 +751,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    payments: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::payment.payment'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1177,6 +1182,46 @@ export interface ApiNewNew extends Schema.CollectionType {
   };
 }
 
+export interface ApiPaymentPayment extends Schema.CollectionType {
+  collectionName: 'payments';
+  info: {
+    singularName: 'payment';
+    pluralName: 'payments';
+    displayName: 'Payment';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    tx_ref: Attribute.String & Attribute.Unique;
+    amount: Attribute.Decimal;
+    email: Attribute.Email;
+    customer_name: Attribute.String;
+    status: Attribute.Enumeration<['pending', 'success', 'failed']>;
+    user: Attribute.Relation<
+      'api::payment.payment',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    items: Attribute.Component<'payment.order-item', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::payment.payment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::payment.payment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiProductProduct extends Schema.CollectionType {
   collectionName: 'products';
   info: {
@@ -1210,6 +1255,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'manyToMany',
       'api::product.product'
     >;
+    price: Attribute.Decimal;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1389,6 +1435,7 @@ declare module '@strapi/types' {
       'api::job-application.job-application': ApiJobApplicationJobApplication;
       'api::menu.menu': ApiMenuMenu;
       'api::new.new': ApiNewNew;
+      'api::payment.payment': ApiPaymentPayment;
       'api::product.product': ApiProductProduct;
       'api::site-footer.site-footer': ApiSiteFooterSiteFooter;
       'api::slideshow.slideshow': ApiSlideshowSlideshow;
